@@ -1,0 +1,30 @@
+﻿@page
+@model RazorPages.Pages.Person.EditModel
+@{
+}
+
+<partial name="_Message" />
+
+<div>
+    <h3>Edit Person</h3>
+    <form asp-action="Edit">
+        <input type="hidden" asp-for="Person.Id" class="form-control" />
+
+        <div class="form-group">
+            <label asp-for="Person.Name"></label>
+            <input asp-for="Person.Name" class="form-control" />
+            <span class="text-danger" asp-validation-for="Person.Name"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Person.Email"></label>
+            <input asp-for="Person.Email" class="form-control" />
+            <span class="text-danger" asp-validation-for="Person.Email"></span>
+        </div>
+
+        <div class="my-2">
+            <button class="btn btn-primary">Update</button>
+            <a asp-page="DisplayAll" class="btn btn-dark">All records</a>
+        </div>
+    </form>
+</div>
