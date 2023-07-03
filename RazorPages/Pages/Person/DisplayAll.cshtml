@@ -1,0 +1,29 @@
+﻿@page
+@model RazorPages.Pages.Person.DisplayAllModel
+@{
+}
+
+<div>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var Person in Model.People)
+            {
+                <tr>
+                    <td>@Person.Name</td>
+                    <td>@Person.Email</td>
+                    <td>
+                        <a asp-page="Edit" class="btn btn-success" >Edit</a>
+                        <a @*asp-page="Delete" asp-route-id="@Person.Id"*@ class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
