@@ -2,14 +2,10 @@
 
 namespace RazorPages.Data
 {
-    public class Person
+    public class Category
     {
         public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
-        [Required, EmailAddress]
-        public string? Email { get; set; }
-
-        public string? ProfilePicture { get; set; }
     }
 }

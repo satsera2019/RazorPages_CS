@@ -10,5 +10,7 @@ namespace RazorPages.Data
         }
 
         public DbSet<Person> Person { get; set; }
+
+        public DbSet<Category> Category { get; set; }
     }
 }

@@ -5,6 +5,9 @@
 
 <partial name="_Message" />
 <h3>Persons</h3>
+
+<a asp-page="Create" class="btn btn-success my-2">Add Person</a>
+
 <div>
     <table class="table table-bordered table-striped">
         <thead>
@@ -22,7 +25,10 @@
                     <td>@Person.Email</td>
                     <td>
                         <a asp-page="Edit" asp-route-id="@Person.Id" class="btn btn-success">Edit</a>
-                        <a @*asp-page="Delete" asp-route-id="@Person.Id"*@ class="btn btn-danger">Delete</a>
+                        <form asp-action="DisplayAll">
+                            <button onclick="return confirm('Are you sure?')" asp-page-handler="Delete" asp-route-id="@Person.Id" class="btn btn-danger">Delete</button>
+                        </form>
+                        
                     </td>
                 </tr>
             }
