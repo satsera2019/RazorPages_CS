@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RazorPages.Data;
+using RazorPages.Services;
 
 namespace RazorPages.Pages.Person
 {
     public class CreateModel : PageModel
     {
         private readonly DatabaseContext _ctx;
+        private readonly IFileService _fileService;
 
-        public CreateModel(DatabaseContext ctx)
+        public CreateModel(DatabaseContext ctx, IFileService fileService)
         {
             _ctx = ctx;
+            _fileService = fileService;
         }
 
         [BindProperty]
@@ -31,8 +34,16 @@ namespace RazorPages.Pages.Person
             {
                 if (Person == null)
                     return NotFound();
+                if(Person.ImageFile != null)
+                {
+                    var fResult = _fileService.SaveImage(Person.ImageFile);
+                    if (fResult.Item1 == 1)
+                    {
+                        Person.ProfilePicture = fResult.Item2;  // name of image
+                    }
+                }
                 _ctx.Person.Add(Person);
-                _ctx.SaveChanges();
+                await _ctx.SaveChangesAsync();
                 TempData["success"] = "Saved Successfully.";
             } catch (Exception ex)
             {

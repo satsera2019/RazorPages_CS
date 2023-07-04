@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RazorPages.Data;
+using RazorPages.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,7 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("conn")));
-
+builder.Services.AddTransient<IFileService, FileService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

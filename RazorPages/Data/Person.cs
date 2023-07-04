@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RazorPages.Data
 {
@@ -11,5 +12,8 @@ namespace RazorPages.Data
         public string? Email { get; set; }
 
         public string? ProfilePicture { get; set; }
+
+        [NotMapped]
+        public IFormFile? ImageFile { get; set; }
     }
 }

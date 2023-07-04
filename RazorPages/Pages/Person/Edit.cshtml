@@ -7,8 +7,9 @@
 
 <div>
     <h3>Edit Person</h3>
-    <form asp-action="Edit">
+    <form asp-action="Edit" enctype="multipart/form-data">
         <input type="hidden" asp-for="Person.Id" class="form-control" />
+        <input type="hidden" asp-for="Person.ProfilePicture" class="form-control" />
 
         <div class="form-group">
             <label asp-for="Person.Name"></label>
@@ -20,6 +21,16 @@
             <label asp-for="Person.Email"></label>
             <input asp-for="Person.Email" class="form-control" />
             <span class="text-danger" asp-validation-for="Person.Email"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Person.ImageFile"></label>
+            @if (!string.IsNullOrEmpty(Model.Person.ProfilePicture))
+            {
+                <img style="width: auto; height: 100px;" src="/Uploads/@Model.Person.ProfilePicture" alt="Profile Picture" />
+            }
+            <input type="file" asp-for="Person.ImageFile" class="form-control" />
+            <span class="text-danger" asp-validation-for="Person.ImageFile"></span>
         </div>
 
         <div class="my-2">

@@ -14,6 +14,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Image</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -23,6 +24,15 @@
                 <tr>
                     <td>@Person.Name</td>
                     <td>@Person.Email</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(Person.ProfilePicture))
+                        {
+                            <img style="width: auto; height: 100px;" src="/Uploads/@Person.ProfilePicture" alt="Profile Picture"/>
+                        } else
+                        {
+                            <span>NA</span>
+                        }
+                    </td>
                     <td>
                         <a asp-page="Edit" asp-route-id="@Person.Id" class="btn btn-success">Edit</a>
                         <form asp-action="DisplayAll">
